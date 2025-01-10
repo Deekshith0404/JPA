@@ -8,11 +8,22 @@ import javax.persistence.Persistence;
 
 public class PushpaRunner {
     public static void main(String[] args) {
-        PushpaHotel pushpaHotel=new PushpaHotel();
        EntityManagerFactory entityManagerFactory= Persistence.createEntityManagerFactory("hotel");
          EntityManager entityManager=entityManagerFactory.createEntityManager();
-         PushpaHotel ent=entityManager.find(PushpaHotel.class,6);
-        System.out.println(ent);
+         PushpaHotel ent=entityManager.find(PushpaHotel.class,5);
+        PushpaHotel ent1=entityManager.find(PushpaHotel.class,4);
+        PushpaHotel ent2=entityManager.find(PushpaHotel.class,1);
+        PushpaHotel ent3=entityManager.find(PushpaHotel.class,3);
+        PushpaHotel ent4=entityManager.find(PushpaHotel.class,6);
+        System.out.println("data are "+ent);
+        System.out.println("-------------------");
+        System.out.println("data are "+ent1);
+        System.out.println("-------------------");
+        System.out.println("data are "+ent2);
+        System.out.println("-------------------");
+        System.out.println("data are "+ent3);
+        System.out.println("-------------------");
+        System.out.println("data are "+ent4);
 
         try {
             if (ent!= null) {
@@ -31,11 +42,5 @@ public class PushpaRunner {
             entityManager.getTransaction().rollback();
         }
 
-
-
-
-        entityManager.getTransaction().begin();
-        entityManager.persist(pushpaHotel);
-        entityManager.getTransaction().commit();
     }
 }

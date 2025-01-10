@@ -8,26 +8,46 @@ import javax.persistence.Persistence;
 
 public class SanthiRunner {
     public static void main(String[] args) {
-        SanthiHotel santhiHotel=new SanthiHotel();
-        santhiHotel.setId(7);
-        santhiHotel.setOwner("Suresh");
-        santhiHotel.setLocation("Delhi");
-        santhiHotel.setC_number(9812345678L);
-        santhiHotel.setType("veg");
-        santhiHotel.setFamousfor("paneer tikka");
-        santhiHotel.setPincode(110001);
-        santhiHotel.setArea("Connaught Place");
-
-
-
-
-
-
-
         EntityManagerFactory entityManagerFactory= Persistence.createEntityManagerFactory("hotel");
-       EntityManager entityManager= entityManagerFactory.createEntityManager();
-       entityManager.getTransaction().begin();
-       entityManager.persist(santhiHotel);
-       entityManager.getTransaction().commit();
+        EntityManager entityManager= entityManagerFactory.createEntityManager();
+        SanthiHotel san=entityManager.find(SanthiHotel.class,5);
+        System.out.println(san);
+        System.out.println("------------------------------------");
+        SanthiHotel san1=entityManager.find(SanthiHotel.class,3);
+        System.out.println(san1);
+        System.out.println("------------------------------------");
+        SanthiHotel san2=entityManager.find(SanthiHotel.class,2);
+        System.out.println(san2);
+        System.out.println("------------------------------------");
+        SanthiHotel san3=entityManager.find(SanthiHotel.class,6);
+        System.out.println(san3);
+        System.out.println("------------------------------------");
+        SanthiHotel san4=entityManager.find(SanthiHotel.class,4);
+        System.out.println(san4);
+        System.out.println("------------------------------------");
+
+        try {
+            if (san!=null) {
+                san.setType("veg");
+                san.setPincode(456966);
+                san.setFamousfor("palav");
+                san.setC_number(4596692162l);
+                san.setLocation("mandya");
+                entityManager.getTransaction().begin();
+                entityManager.merge(san);
+                entityManager.getTransaction().commit();
+                entityManager.close();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            entityManager.getTransaction().rollback();
+        }
+
+
+
+
+
+
+
     }
 }
