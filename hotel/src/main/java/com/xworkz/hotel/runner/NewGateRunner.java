@@ -59,13 +59,13 @@ public class NewGateRunner {
             System.out.println(e.getMessage());
             entityManager.getTransaction().rollback();
         }
-//    if (ent!=null) {
-//        entityManager.getTransaction().begin();
-//        entityManager.remove(ent);
-//        entityManager.getTransaction().commit();
-//        System.out.println("deleted");
-//    }else {
-//        System.out.println("not deleted");
-//    }
+    if (ent!=null) {
+        entityManager.getTransaction().begin();
+        entityManager.remove(ent);
+        entityManager.getTransaction().commit();
+        System.out.println("deleted");
+    }else {
+        System.out.println("not deleted");
+    }
     }
 }
