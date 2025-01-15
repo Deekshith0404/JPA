@@ -1,8 +1,6 @@
 package com.xworkz.examples.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -10,7 +8,14 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Data
 @ToString
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "bag")
+@NamedQuery(name = "getallData",query = "select bag from BagEntity bag")
+@NamedQuery(name = "getByName",query = "select bag from BagEntity bag where bag.brand=:name")
+@NamedQuery(name = "countAll",query = "select count(bag) from BagEntity bag where bag.brand=:name")
+
 public class BagEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
